@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>✨ Sprite Studio · Material You</title>
+  
+  <!-- Material Symbols -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,0" />
+  
+  <style>
+    /* ----- Material You Dark Theme Variables ----- */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      --md-sys-color-primary: #D0BCFF;
+      --md-sys-color-on-primary: #381E72;
+      --md-sys-color-primary-container: #4A4458;
+      --md-sys-color-on-primary-container: #EADDFF;
+      --md-sys-color-secondary: #CCC2DC;
+      --md-sys-color-on-secondary: #332D41;
+      --md-sys-color-surface: #1C1B1F;
+      --md-sys-color-surface-variant: #49454F;
+      --md-sys-color-on-surface: #E6E1E5;
+      --md-sys-color-on-surface-variant: #CAC4D0;
+      --md-sys-color-outline: #938F99;
+      --md-elevation-level-1: 0px 1px 3px 1px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3);
+      --md-elevation-level-2: 0px 2px 6px 2px rgba(0,0,0,0.15), 0px 1px 2px 0px rgba(0,0,0,0.3);
+      --md-elevation-level-3: 0px 4px 8px 3px rgba(0,0,0,0.15), 0px 1px 3px 0px rgba(0,0,0,0.3);
+      
+      font-family: 'Roboto', 'Segoe UI', system-ui, sans-serif;
+      background-color: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      min-height: 100vh;
+      padding: 24px 16px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .md-container {
+      max-width: 720px;
+      width: 100%;
+      background: var(--md-sys-color-surface);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--md-elevation-level-2);
+      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+    }
+
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.25;
+      margin-bottom: 24px;
+      color: var(--md-sys-color-on-surface);
+    }
+
+    .headline-icon {
+      font-size: 32px;
+      color: var(--md-sys-color-primary);
+      background: var(--md-sys-color-primary-container);
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ----- Material 3 Filled Fields ----- */
+    .md-field {
+      margin-bottom: 24px;
+      position: relative;
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 12px 12px 4px 4px;
+      transition: background 0.1s ease;
+      border-bottom: 1px solid var(--md-sys-color-outline);
+    }
+
+    .md-field:hover {
+      background: rgba(73, 69, 79, 0.7);
+    }
+
+    .md-field:focus-within {
+      border-bottom: 2px solid var(--md-sys-color-primary);
+      background: rgba(73, 69, 79, 0.9);
+    }
+
+    .md-field label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px 0;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--md-sys-color-on-surface-variant);
+    }
+
+    .md-field input {
+      width: 100%;
+      padding: 8px 16px 12px;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      color: var(--md-sys-color-on-surface);
+      font-family: inherit;
+      caret-color: var(--md-sys-color-primary);
+    }
+
+    .md-field input[type="file"] {
+      padding: 10px 16px 14px;
+      font-size: 0.95rem;
+    }
+
+    .md-field input::file-selector-button {
+      background: var(--md-sys-color-secondary);
+      color: var(--md-sys-color-on-secondary);
+      border: none;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-weight: 500;
+      margin-right: 16px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-family: inherit;
+      box-shadow: var(--md-elevation-level-1);
+    }
+
+    .md-field input::file-selector-button:hover {
+      background: #DDD3F0;
+      box-shadow: var(--md-elevation-level-2);
+    }
+
+    /* ----- Extended FAB Button ----- */
+    .md-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border: none;
+      padding: 14px 24px;
+      border-radius: 40px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.2,0,0,1);
+      box-shadow: var(--md-elevation-level-1);
+      margin: 16px 0 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .md-button:hover {
+      background: #5C5370;
+      box-shadow: var(--md-elevation-level-2);
+      color: #F5EEFF;
+    }
+
+    /* ----- Download Link (Text Button) ----- */
+    .md-download-link {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--md-sys-color-primary);
+      font-weight: 600;
+      padding: 12px 24px;
+      border-radius: 40px;
+      text-decoration: none;
+      margin: 16px 0 20px;
+      border: 1.5px solid var(--md-sys-color-outline);
+      transition: 0.2s;
+    }
+
+    .md-download-link:hover {
+      background: rgba(208, 188, 255, 0.08);
+      border-color: var(--md-sys-color-primary);
+    }
+
+    /* ----- Canvas Area (Transparent Background Ready) ----- */
+    .canvas-wrapper {
+      background: var(--md-sys-color-surface-variant);
+      border-radius: 24px;
+      padding: 16px;
+      margin-top: 20px;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+    }
+
+    #canvas {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      /* Transparent checkerboard pattern to visualize alpha channel */
+      background-image: 
+        linear-gradient(45deg, #3A3740 25%, transparent 25%),
+        linear-gradient(-45deg, #3A3740 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #3A3740 75%),
+        linear-gradient(-45deg, transparent 75%, #3A3740 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #2B2930;
+      box-shadow: var(--md-elevation-level-1);
+    }
+
+    /* Chips & Helpers */
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 10px 0;
+    }
+
+    .chip {
+      background: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .metadata-hint {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--md-sys-color-on-surface-variant);
+      margin-top: 8px;
+    }
+
+    @media (max-width: 500px) {
+      body { padding: 16px 8px; }
+      .md-container { padding: 20px 16px; }
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="md-container">
+    <h1>
+      <span class="headline-icon material-symbols-outlined">grid_view</span>
+      Sprite Studio
+    </h1>
+    
+    <!-- Upload Field -->
+    <div class="md-field">
+      <label>
+        <span class="material-symbols-outlined">upload_file</span> 
+        Images (PNG)
+      </label>
+      <input type="file" id="fileInput" multiple accept="image/png">
+    </div>
+
+    <!-- Image Count Chip -->
+    <div class="chip-row" id="imageCountChip" style="display: none;">
+      <span class="chip">
+        <span class="material-symbols-outlined">imagesmode</span>
+        <span id="imageCountText">0</span> sprites loaded
+      </span>
+    </div>
+
+    <!-- Row: Filename & Padding -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="md-field">
+        <label><span class="material-symbols-outlined">drive_file_rename_outline</span> Filename</label>
+        <input type="text" id="filenameInput" value="sprite_sheet" placeholder="sprite_sheet">
+      </div>
+      <div class="md-field">
+        <label><span class="material-symbols-outlined">space_dashboard</span> Padding (px)</label>
+        <input type="number" id="paddingInput" value="2" min="0" step="1">
+      </div>
+    </div>
+
+    <!-- Columns Field -->
+    <div class="md-field">
+      <label><span class="material-symbols-outlined">view_column</span> Columns</label>
+      <input type="number" id="columnsInput" value="4" min="1" step="1">
+    </div>
+
+    <button class="md-button" id="generateBtn">
+      <span class="material-symbols-outlined">auto_awesome</span>
+      Generate Sprite Sheet
+    </button>
+
+    <a id="downloadLink" class="md-download-link" download>
+      <span class="material-symbols-outlined">download</span>
+      <span id="downloadLabel">Download</span>
+    </a>
+
+    <!-- Canvas Preview -->
+    <div class="canvas-wrapper">
+      <canvas id="canvas"></canvas>
+    </div>
+    <div class="metadata-hint">
+      <span class="material-symbols-outlined" style="font-size: 18px;">info</span>
+      Frame JSON metadata is printed in the console (F12)
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      "use strict";
+
+      // ---------- DOM Elements ----------
+      const fileInput = document.getElementById('fileInput');
+      const imageCountChip = document.getElementById('imageCountChip');
+      const imageCountText = document.getElementById('imageCountText');
+      const paddingInput = document.getElementById('paddingInput');
+      const columnsInput = document.getElementById('columnsInput');
+      const filenameInput = document.getElementById('filenameInput');
+      const generateBtn = document.getElementById('generateBtn');
+      const downloadLink = document.getElementById('downloadLink');
+      const downloadLabel = document.getElementById('downloadLabel');
+      const canvas = document.getElementById('canvas');
+      const ctx = canvas.getContext('2d', { alpha: true }); // explicit alpha
+
+      let images = [];
+      
+      // ---------- Update UI Chips ----------
+      function updateImageChip() {
+        if (images.length > 0) {
+          imageCountChip.style.display = 'flex';
+          imageCountText.textContent = images.length;
+        } else {
+          imageCountChip.style.display = 'none';
+        }
+      }
+
+      // ---------- File Loading with Material Feedback ----------
+      fileInput.addEventListener('change', async (event) => {
+        const files = Array.from(event.target.files);
+        if (!files.length) {
+          images = [];
+          updateImageChip();
+          return;
+        }
+
+        // Loading toast
+        const loadingToast = document.createElement('div');
+        loadingToast.style.cssText = `
+          position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+          background: #2e2a33; color: white; padding: 12px 24px; border-radius: 36px; 
+          box-shadow: var(--md-elevation-level-3); z-index: 999; display: flex; gap: 12px; align-items: center;
+        `;
+        loadingToast.innerHTML = `<span class="material-symbols-outlined">sync</span> Loading ${files.length} images...`;
+        document.body.appendChild(loadingToast);
+
+        images = [];
+        try {
+          for (const file of files) {
+            const img = new Image();
+            const url = URL.createObjectURL(file);
+            img.src = url;
+            await new Promise((resolve, reject) => {
+              img.onload = () => resolve();
+              img.onerror = () => reject(new Error(`Failed to load ${file.name}`));
+            });
+            images.push(img);
+          }
+          updateImageChip();
+        } catch (e) {
+          alert('⚠️ ' + e.message);
+        } finally {
+          loadingToast.remove();
+        }
+        
+        if (images.length) {
+          const smallNote = document.createElement('div');
+          smallNote.className = 'chip';
+          smallNote.style.position = 'fixed'; smallNote.style.bottom = '24px'; smallNote.style.left = '50%'; 
+          smallNote.style.transform = 'translateX(-50%)'; smallNote.style.zIndex = '998';
+          smallNote.style.background = '#4A4458';
+          smallNote.innerHTML = `<span class="material-symbols-outlined">check_circle</span> ${images.length} sprites ready`;
+          document.body.appendChild(smallNote);
+          setTimeout(() => smallNote.remove(), 2000);
+        }
+      });
+
+      // ---------- Generate Sprite Sheet with Transparency ----------
+      function generateSpriteSheet() {
+        if (!images.length) {
+          alert('🐾 Please upload PNG images first.');
+          return;
+        }
+
+        const padding = parseInt(paddingInput.value, 10) || 0;
+        const columns = parseInt(columnsInput.value, 10) || 1;
+        if (columns < 1) columnsInput.value = 1;
+        
+        const spriteWidth = images[0].width;
+        const spriteHeight = images[0].height;
+        
+        const inconsistent = images.some(img => img.width !== spriteWidth || img.height !== spriteHeight);
+        if (inconsistent) {
+          console.warn("⚠️ Sprite sizes vary — using the first image's dimensions.");
+        }
+
+        const rows = Math.ceil(images.length / columns);
+        
+        const sheetWidth = columns * (spriteWidth + padding) - padding;
+        const sheetHeight = rows * (spriteHeight + padding) - padding;
+        
+        // Set canvas dimensions
+        canvas.width = sheetWidth;
+        canvas.height = sheetHeight;
+        
+        // CRITICAL: Clear with transparent black (alpha = 0)
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        const metadata = [];
+        
+        // Draw each sprite with full alpha support
+        for (let i = 0; i < images.length; i++) {
+          const col = i % columns;
+          const row = Math.floor(i / columns);
+          const x = col * (spriteWidth + padding);
+          const y = row * (spriteHeight + padding);
+          
+          ctx.drawImage(images[i], x, y, spriteWidth, spriteHeight);
+          
+          metadata.push({
+            name: `frame_${i}`,
+            x, y,
+            width: spriteWidth,
+            height: spriteHeight
+          });
+        }
+        
+        // ----- Prepare Download with Custom Filename -----
+        const baseName = filenameInput.value.trim() || 'sprite_sheet';
+        const safeName = baseName.replace(/[^a-zA-Z0-9_\- ]/g, '').substring(0, 40) || 'sprite_sheet';
+        const fileName = `${safeName}.png`;
+        
+        downloadLink.download = fileName;
+        downloadLink.href = canvas.toDataURL('image/png');
+        downloadLink.style.display = 'flex';
+        downloadLabel.textContent = `Download ${fileName}`;
+        
+        // Log JSON metadata to console
+        console.log(`🎯 Sprite Sheet "${fileName}" | ${images.length} frames | ${columns}x${rows}`);
+        console.log("📦 Frame JSON:", JSON.stringify(metadata, null, 2));
+        
+        // Visual feedback
+        generateBtn.style.transform = 'scale(0.98)';
+        setTimeout(() => generateBtn.style.transform = '', 100);
+        
+        canvas.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      generateBtn.addEventListener('click', generateSpriteSheet);
+      
+      // Update download label when filename changes (if link is visible)
+      filenameInput.addEventListener('input', () => {
+        if (downloadLink.style.display === 'flex' && canvas.width > 0) {
+          const base = filenameInput.value.trim() || 'sprite_sheet';
+          const safe = base.replace(/[^a-zA-Z0-9_\- ]/g, '').substring(0,40) || 'sprite_sheet';
+          downloadLink.download = `${safe}.png`;
+          downloadLabel.textContent = `Download ${safe}.png`;
+        }
+      });
+
+      updateImageChip();
+      console.log('✨ Sprite Studio · Transparency enabled · Material You');
+    })();
+  </script>
+</body>
+</html>
